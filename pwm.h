@@ -13,6 +13,8 @@ void pwm_interrupt_on();
 void pwm_Timer4_config();
 void set_steering_duty(uint16_t value);
 void set_throttle_duty(uint16_t value);
+uint16_t get_duty_steering();
+uint16_t get_duty_throttle();
 unsigned int get_interrupt_timestamp();
 
 #endif /* PWM_H_ */
