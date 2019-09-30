@@ -1,18 +1,10 @@
-/*
- * portkextint.h
- *
- *  Created on: Sep 17, 2019
- *      Author: jconnor
- */
-
 #ifndef PORTKEXTINT_H_
 #define PORTKEXTINT_H_
 
 #include "Arduino.h"
 
-// for bit manipulation and indexing into the tracking array
-#define THROTTLE_BIT 0
-#define STEERING_BIT 1
+// device declarations for indexing and accessing the related port
+enum port_k_connected_device_types { throttle = 0, steering = 1, RC_calibration = 7 };
 
 class scaler_class {
 private:
@@ -25,7 +17,7 @@ private:
 	uint16_t max_signal_out = 2000;
 public:
 	scaler_class(){};
-	void set_input_range(uint16_t min_in, uint16_t max_in) {
+	void set_input_range(const uint16_t min_in, const uint16_t max_in) {
 		min_signal_in = min_in;
 		max_signal_in = max_in;
 	};
@@ -49,6 +41,7 @@ public:
 			factor = (float)(duty - neutral_signal_in) / (float)(min_signal_in-neutral_signal_in);
 			result = neutral_signal_out + (uint16_t) (factor * (float)( min_signal_out - neutral_signal_out) );
 		}
+		/*
 		  Serial.print("t = ");
 		  Serial.print(millis());
 		  Serial.print("   duty = ");
@@ -57,6 +50,7 @@ public:
 		  Serial.print(factor);
 		  Serial.print("   scaled = ");
 		  Serial.println(result);
+		*/
 		return result;
 	}
 };
@@ -66,10 +60,12 @@ public:
 // the related external processing routine is called
 void port_k_throttle_ISR(uint8_t port_bitpattern);
 void port_k_steering_ISR(uint8_t port_bitpattern);
+void port_k_ISR(uint8_t port_bitpattern, port_k_connected_device_types device_port_no);
 
 // management functions
 void port_k_interrupt_off();
 void port_k_interrupt_on();
 void port_k_config();
+void port_k_get_data(const port_k_connected_device_types port_no, unsigned long *signal_time_stamp, unsigned int *signal_duration, unsigned long *duty_time_stamp, unsigned int *duty_duration);
 
 #endif /* PORTKEXTINT_H_ */
