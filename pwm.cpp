@@ -146,14 +146,14 @@ void pwm_interrupt_on(){
 
 void pwm_set_steering_duty(unsigned int value){
 	PWM_steering_duty = value;
-	Serial.print("set   steering = ");
-	Serial.println(value);
+	//Serial.print("set   steering = ");
+	//Serial.println(value);
 }
 
 void pwm_set_throttle_duty(unsigned int value){
 	PWM_throttle_duty = value;
-	Serial.print("   throttle = ");
-	Serial.println(value);
+	//Serial.print("   throttle = ");
+	//Serial.println(value);
 }
 
 unsigned long pwm_get_interrupt_timestamp(){ return PWM_int_time_stamp; }

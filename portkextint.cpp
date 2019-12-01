@@ -92,7 +92,7 @@ void port_k_config(){
 	// values empirically determined
 	PORTK_data[port_k_connected_device_types::throttle].scaler.set_input_range(1100,1900);
 	PORTK_data[port_k_connected_device_types::throttle].scaler.set_output_range(1400, 1600);
-	PORTK_data[port_k_connected_device_types::steering].scaler.set_input_range(1140,1800);
+	PORTK_data[port_k_connected_device_types::steering].scaler.set_input_range(1200,1800);
 	PORTK_data[port_k_connected_device_types::steering].scaler.set_output_range(1050, 1950);
 
 	port_k_interrupt_on();

@@ -32,14 +32,22 @@ public:
 		bool valid_high_signal = (duty>neutral_signal_in+neutral_epsilon);
 		if (valid_high_signal) {
 			if (duty>max_signal_in) duty = max_signal_in;
-			factor = (float)(duty - neutral_signal_in) / (float)(max_signal_in-neutral_signal_in);
-			result = neutral_signal_out + (uint16_t) (factor * (float)( max_signal_out - neutral_signal_out) );
+            int nom1 = (duty - neutral_signal_in);
+		    int denom1 = (max_signal_in - neutral_signal_in);
+            factor = (float)nom1 /(float)denom1;
+            float range = (float)(max_signal_out) - (float)(neutral_signal_out);
+		    float scaled = factor * range;
+            result = (unsigned int) ( (float) neutral_signal_out + scaled );
 		}
 		bool valid_low_signal = (duty<neutral_signal_in-neutral_epsilon);
 		if (valid_low_signal) {
 			if (duty<min_signal_in) duty = min_signal_in;
-			factor = (float)(duty - neutral_signal_in) / (float)(min_signal_in-neutral_signal_in);
-			result = neutral_signal_out + (uint16_t) (factor * (float)( min_signal_out - neutral_signal_out) );
+            int nom1 = (duty - neutral_signal_in);
+		    int denom1 = (min_signal_in - neutral_signal_in);
+		    factor = (float)nom1 /(float)denom1;
+            float range = (float)(min_signal_out) - (float)(neutral_signal_out);
+		    float scaled = factor * range;
+            result = (unsigned int) ( (float) neutral_signal_out + scaled );
 		}
 		/*
 		  Serial.print("t = ");

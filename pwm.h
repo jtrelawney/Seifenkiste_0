@@ -3,7 +3,7 @@
 
 #include "Arduino.h"
 
-const static unsigned int PWM_target_signal_duration=18100;
+const static unsigned int PWM_target_signal_duration=18500;
 static volatile unsigned int PWM_throttle_duty=1500;
 static volatile unsigned int PWM_steering_duty=1500;
 
