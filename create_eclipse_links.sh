@@ -9,7 +9,9 @@
  
 separator="--------------------------"
 eclipse_project_dir="/home/jconnor/sloeber-workspace/Z_seifenkiste_0/"
+eclipse_project_dir="/home/jconnor/eclipse_sloeber_workspace/seifenkiste_0/"
 git_dir="/home/jconnor/Projects/Seifenkiste_0/"
+git_dir="/home/jconnor/Projects/Seifenkiste_0_The_Hack/"
 
 echo "creating links to eclipse project files"
 candidate_count=$(ls -la "$eclipse_project_dir" | grep -E '.cpp|.h|.ino' | grep -v ".ino.cpp" | wc -l)
